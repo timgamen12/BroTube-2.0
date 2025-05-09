@@ -1,19 +1,19 @@
+// script.js
+
 let loggedIn = false;
-let videos = [];
-let subscribers = [];
 let currentUser = {
   username: '',
   profilePic: ''
 };
 
+let videos = JSON.parse(localStorage.getItem('videos')) || [];
+let subscribers = [];
 let currentVideoIndex = null;
 
-// Functie om te controleren of er al een ingelogde gebruiker is bij het laden van de pagina
-window.onload = function() {
+window.onload = function () {
   checkLogin();
 };
 
-// Controleer bij het laden van de pagina of de gebruiker al is ingelogd
 function checkLogin() {
   const savedUser = localStorage.getItem('currentUser');
   if (savedUser) {
@@ -50,10 +50,7 @@ function login() {
     document.getElementById('creatorProfilePic').src = reader.result;
     document.getElementById('creatorProfilePic').style.display = 'block';
     document.getElementById('editUsername').value = username;
-
-    // Bewaar de gebruiker in localStorage
     localStorage.setItem('currentUser', JSON.stringify(currentUser));
-
     loggedIn = true;
     document.getElementById('loginSection').classList.add('hidden');
     document.getElementById('loginBtn').classList.add('hidden');
@@ -72,8 +69,6 @@ function updateProfile() {
     reader.onload = () => {
       currentUser.profilePic = reader.result;
       document.getElementById('creatorProfilePic').src = reader.result;
-      
-      // Update localStorage
       localStorage.setItem('currentUser', JSON.stringify(currentUser));
     };
     reader.readAsDataURL(picInput.files[0]);
@@ -102,9 +97,10 @@ function uploadVideo() {
       views: 0,
       likes: 0,
       creator: currentUser.username,
-      likedByUser: false,  // Track if the current user has liked this video
+      likedByUser: false,
     };
     videos.push(videoObj);
+    localStorage.setItem('videos', JSON.stringify(videos));
     renderVideos();
     renderMyVideos();
   };
@@ -144,9 +140,10 @@ function renderMyVideos() {
 
 function watchVideo(index) {
   const video = videos[index];
-  currentVideoIndex = index;  // Track the currently watched video
+  currentVideoIndex = index;
   const videoContainer = document.getElementById('videoContainer');
-  video.views++;  // Increase views
+  video.views++;
+  localStorage.setItem('videos', JSON.stringify(videos));
   videoContainer.innerHTML = `
     <h3>${video.title}</h3>
     <video controls>
@@ -155,12 +152,8 @@ function watchVideo(index) {
   `;
   document.getElementById('videoPage').classList.remove('hidden');
   renderVideos();
-  
-  // Reset like and subscribe buttons to default state
   document.getElementById('likeBtn').classList.remove('liked');
   document.getElementById('subscribeBtn').classList.remove('subscribed');
-  
-  // Set initial like and subscribe button state
   if (video.likedByUser) {
     document.getElementById('likeBtn').classList.add('liked');
   }
@@ -169,20 +162,19 @@ function watchVideo(index) {
 function likeVideo() {
   const video = videos[currentVideoIndex];
   if (!video.likedByUser) {
-    video.likes++;  // Increment likes
-    video.likedByUser = true;  // Track that the user liked this video
+    video.likes++;
+    video.likedByUser = true;
     document.getElementById('likeBtn').classList.add('liked');
+    localStorage.setItem('videos', JSON.stringify(videos));
   }
 }
 
 function subscribe(creator, videoIndex) {
-  // Check if user is already subscribed to this creator
   if (!subscribers.includes(creator)) {
     subscribers.push(creator);
     document.getElementById('subscriberCount').textContent = subscribers.length;
     document.getElementById('subscribeBtn').classList.add('subscribed');
-    // Now, show more videos from this creator
-    showHome(); // Show more videos of the creator who was subscribed to
+    showHome();
   } else {
     alert("Je bent al geabonneerd op deze creator.");
   }
