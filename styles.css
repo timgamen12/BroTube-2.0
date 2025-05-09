@@ -1,0 +1,138 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #0d0d0d;
+  color: #ffffff;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #1c1c1c;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff0000;
+}
+
+.nav-button {
+  background-color: #ff0000;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 20px;
+  margin-left: 10px;
+  transition: background 0.3s;
+}
+
+.nav-button:hover {
+  background-color: #cc0000;
+}
+
+.container {
+  padding: 2rem;
+  max-width: 900px;
+  margin: auto;
+}
+
+.card {
+  background-color: #1a1a1a;
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.hidden {
+  display: none;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="file"] {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: none;
+  background-color: #2a2a2a;
+  color: #fff;
+}
+
+.btn-primary {
+  display: inline-block;
+  width: 100%;
+  padding: 12px;
+  background-color: #ff0000;
+  border: none;
+  border-radius: 20px;
+  color: #fff;
+  font-weight: bold;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #cc0000;
+}
+
+.videoCard {
+  background-color: #2a2a2a;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  width: 150px;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.videoCard img {
+  max-width: 100%;
+  border-radius: 10px;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+video {
+  width: 100%;
+  border-radius: 12px;
+  margin-top: 0.5rem;
+}
+
+.profile-pic {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+#videoPage {
+  text-align: center;
+}
+
+#videoContainer {
+  margin-bottom: 20px;
+}
+
+#videoPage video {
+  width: 80%;
+  margin-top: 20px;
+}
+
+#likeBtn.liked, #subscribeBtn.subscribed {
+  background-color: #28a745;
+}
+
+#likeBtn.liked:hover, #subscribeBtn.subscribed:hover {
+  background-color: #218838;
+}

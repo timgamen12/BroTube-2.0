@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BroTube</title>
+  <link rel="shortcut icon" type="image/png" href="img/favicon.png">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">🎬 BroTube</div>
+    <div>
+      <button id="loginBtn" class="nav-button" onclick="toggleLogin()">Inloggen als Creator</button>
+      <button id="dashboardBtn" class="nav-button hidden" onclick="showDashboard()">Dashboard</button>
+      <button id="homeBtn" class="nav-button hidden" onclick="showHome()">Home</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Login Form -->
+    <section id="loginSection" class="card hidden">
+      <h2>Log in als Creator</h2>
+      <input type="text" id="username" placeholder="Gebruikersnaam" />
+      <input type="password" id="password" placeholder="Wachtwoord" />
+      <label>Profielfoto:</label>
+      <input type="file" id="profilePic" accept="image/*" />
+      <button class="btn-primary" onclick="login()">Inloggen</button>
+    </section>
+
+    <!-- Creator Dashboard -->
+    <section id="creatorDashboard" class="card hidden">
+      <h2>Creator Dashboard</h2>
+      <img id="creatorProfilePic" class="profile-pic" style="display: none;" />
+      <input type="text" id="editUsername" placeholder="Wijzig naam" />
+      <input type="file" id="editProfilePic" accept="image/*" />
+      <button class="btn-primary" onclick="updateProfile()">Update Profiel</button>
+
+      <h3>Upload Video</h3>
+      <label for="videoTitle">Video Titel:</label>
+      <input type="text" id="videoTitle" placeholder="Videotitel" />
+      <label for="videoFile">Video Bestanden:</label>
+      <input type="file" id="videoFile" accept="video/*" />
+      <label for="thumbnailFile">Thumbnail:</label>
+      <input type="file" id="thumbnailFile" accept="image/*" />
+      <button class="btn-primary" onclick="uploadVideo()">📤 Upload Video</button>
+
+      <h3>Mijn video's</h3>
+      <div id="myVideos"></div>
+      <h3>Abonnees: <span id="subscriberCount">0</span></h3>
+    </section>
+
+    <!-- Homepage met alle videos -->
+    <section id="homePage" class="card hidden">
+      <h2>Alle video's</h2>
+      <div id="allVideos"></div>
+    </section>
+
+    <!-- Video Viewing Page -->
+    <section id="videoPage" class="card hidden">
+      <button class="btn-primary" onclick="goBack()">Terug naar Home</button>
+      <div id="videoContainer"></div>
+      <button id="likeBtn" class="btn-primary" onclick="likeVideo()">Like</button>
+      <button id="subscribeBtn" class="btn-primary" onclick="subscribe()">Abonneer</button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
